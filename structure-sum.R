@@ -48,17 +48,17 @@ for (i in 1:Knb) {
 		if (minsum == 0) lnprobab[r, 4] <- "yes" else lnprobab[r, 4]<- "no"
 		lnprobab[r, 5] <- runfiles[r]
 		}
-		        
+		 
 	lnprob <- rbind(lnprob, lnprobab)
 	rm(lnprobab)
-                               
+ 
 	z <- z + runnumbers[i]
 	rm(runfiles)
 	}	 }
 
 if (locprior == T) startl <- startl + 1
  
-if (pop > 0) {         
+if (pop > 0) { 
 for (i in 1:Knb) {
 	
 	runfiles <- as.vector(runtab[z:(z+runnumbers[i]-1), 2])
@@ -120,11 +120,11 @@ for (i in 0:(Ka-2)) {
 	mat1 <- mat1[2:(indnr+1), 2:(Ka-i)]
  	rm(difference, dsr)
 	}
-  mat1.sort[ ,1] <- mat1
-  res <- array(data=NA, c(indnr, Ka, 2))
-  res[ , , 1] <- mat1.sort
-  res[ , , 2] <- mat2
-  return(res)
+ mat1.sort[ ,1] <- mat1
+ res <- array(data=NA, c(indnr, Ka, 2))
+ res[ , , 1] <- mat1.sort
+ res[ , , 2] <- mat2
+ return(res)
 }
 
 # function which calculates coefficients of similarity for a series of structure runs with the same K
@@ -184,35 +184,35 @@ if(scan(file=as.character(runtab[1, 2]), skip= (hd+8), n=1, what="character")== 
 startl <- (hd+23+ran)
 modadm <- T
 if(scan(file=as.character(runtab[1, 2]), skip= (hd+6), n=1, what="character")== "NO") {
-  startl <- (hd+24+ran) 
-  modadm <- F
-  }
+ startl <- (hd+24+ran) 
+ modadm <- F
+ }
 if(scan(file=as.character(runtab[1, 2]), skip= (hd+6), n=1, what="character")== "RECESSIVE") {
 if(scan(file=as.character(runtab[1, 2]), skip= (hd+7), n=1, what="character")== "NO") {
-  startl <- (hd+25+ran)
-  modadm <- F } else startl <- (hd+24+ran)}
+ startl <- (hd+25+ran)
+ modadm <- F } else startl <- (hd+24+ran)}
 
 if (pop == 0) {
-      
+ 
 for (i in 1:Knb) {
 	runfiles <- as.vector(runtab[z:(z+runnumbers[i]-1), 2])
 	K <- scan(runfiles[1], skip=(hd+3), n=1)
 	indnumb <- scan(runfiles[1], skip=(hd+1), n=1)
 
  	if (K != 1) {	
-    	  modcor <- T
-        if (modadm == T) { 
-          if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 7), n=1, what="character")== "Allele") modcor <- F }
-        if (modadm == F) { 
-          if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6), n=1, what="character")== "Allele") modcor <- F }
+ 	 modcor <- T
+ if (modadm == T) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 7), n=1, what="character")== "Allele") modcor <- F }
+ if (modadm == F) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6), n=1, what="character")== "Allele") modcor <- F }
 
-        startlines <- 0
-        if (modadm == T & modcor == T) startlines <- startl + 3*K + 12
-        if (modadm == T & modcor == F) startlines <- startl + 2*K + 12  #changed
-        if (modadm == F & modcor == T) startlines <- startl + 3*K + 11
-        if (modadm == F & modcor == F) startlines <- startl + 2*K + 11
+ startlines <- 0
+ if (modadm == T & modcor == T) startlines <- startl + 3*K + 12
+ if (modadm == T & modcor == F) startlines <- startl + 2*K + 12 #changed
+ if (modadm == F & modcor == T) startlines <- startl + 3*K + 11
+ if (modadm == F & modcor == F) startlines <- startl + 2*K + 11
 
-  if (startlines == 0) print("The model you used to run Structure is not compatible with Structure2.2-sum")
+ if (startlines == 0) print("The model you used to run Structure is not compatible with Structure2.2-sum")
 
 		rundat <- array(data=NA, c(indnumb, K, runnumbers[i]))
 
@@ -233,7 +233,7 @@ for (i in 1:Knb) {
 
 if (locprior == T) startl <- startl + 1
 
-if (pop > 0) {              
+if (pop > 0) { 
 for (i in 1:Knb) {
 		
 	runfiles <- as.vector(runtab[z:(z+runnumbers[i]-1), 2])
@@ -241,33 +241,33 @@ for (i in 1:Knb) {
 	indnumb <- scan(runfiles[1], skip=(hd+1), n=1)
 
 	if (K != 1) {	
-        modcor <- T
-        if (modadm == T) { 
-          if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6 + pop), n=1, what="character")== "Allele") modcor <- F }
-        if (modadm == F) { 
-          if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 5 + pop), n=1, what="character")== "Allele") modcor <- F }
-        if(locprior == T) {   
-          if (modadm == T) { 
-            if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
-          if (modadm == F) { 
-           if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 5 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
-          }
-          
-        startlines <- 0
-        if(locprior == F) {
-          if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop
-          if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop
-          if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop
-          if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop
-        }
-        if(locprior == T) {
-          if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop + nbloc + 3
-          if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop + nbloc + 3
-          if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop + nbloc + 3
-          if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop + nbloc + 3
-        }
-       
-  if (startlines == 0) print("The model you used to run structure is not compatible with Structure sum")
+ modcor <- T
+ if (modadm == T) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6 + pop), n=1, what="character")== "Allele") modcor <- F }
+ if (modadm == F) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 5 + pop), n=1, what="character")== "Allele") modcor <- F }
+ if(locprior == T) { 
+ if (modadm == T) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
+ if (modadm == F) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 5 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
+ }
+ 
+ startlines <- 0
+ if(locprior == F) {
+ if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop
+ if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop
+ if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop
+ if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop
+ }
+ if(locprior == T) {
+ if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop + nbloc + 3
+ if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop + nbloc + 3
+ if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop + nbloc + 3
+ if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop + nbloc + 3
+ }
+ 
+ if (startlines == 0) print("The model you used to run structure is not compatible with Structure sum")
 
 		rundat <- array(data=NA, c(indnumb, K, runnumbers[i]))
 
@@ -345,7 +345,7 @@ for (i in 1:Knb) {
 
 if (locprior == T) startl <- startl + 1
 
-if (pop > 0) {         
+if (pop > 0) { 
 for (i in 1:Knb) {
 	
 	runfiles <- as.vector(runtab[z:(z+runnumbers[i]-1), 2])
@@ -406,30 +406,30 @@ if(scan(infile, skip= (hd+8), n=1, what="character")== "RANDOMIZE") ran <- 1
 startl <- (hd+23+ran)
 modadm <- T
 if(scan(infile, skip= (hd+6), n=1, what="character")== "NO") {
-  startl <- (hd+24+ran) 
-  modadm <- F
-  }
+ startl <- (hd+24+ran) 
+ modadm <- F
+ }
 if(scan(infile, skip= (hd+6), n=1, what="character")== "RECESSIVE") {
 if(scan(infile, skip= (hd+7), n=1, what="character")== "NO") {
-  startl <- (hd+25+ran)
-  modadm <- F } else startl <- (hd+24+ran)}
+ startl <- (hd+25+ran)
+ modadm <- F } else startl <- (hd+24+ran)}
 
 K <- scan(infile, skip=(hd+3), n=1)
 indnumb <- scan(infile, skip=(hd+1), n=1)
-  
+ 
  if (pop == 0) {
-    	  modcor <- T
-        if (modadm == T) { 
-          if(scan(infile, skip= (startl + 2*K + 7), n=1, what="character")== "Allele") modcor <- F }
-        if (modadm == F) { 
-          if(scan(infile, skip= (startl + 2*K + 6), n=1, what="character")== "Allele") modcor <- F }
-        startlines <- 0
-        if (modadm == T & modcor == T) startlines <- startl + 3*K + 12
-        if (modadm == T & modcor == F) startlines <- startl + 2*K + 12
-        if (modadm == F & modcor == T) startlines <- startl + 3*K + 11
-        if (modadm == F & modcor == F) startlines <- startl + 2*K + 11
+ 	 modcor <- T
+ if (modadm == T) { 
+ if(scan(infile, skip= (startl + 2*K + 7), n=1, what="character")== "Allele") modcor <- F }
+ if (modadm == F) { 
+ if(scan(infile, skip= (startl + 2*K + 6), n=1, what="character")== "Allele") modcor <- F }
+ startlines <- 0
+ if (modadm == T & modcor == T) startlines <- startl + 3*K + 12
+ if (modadm == T & modcor == F) startlines <- startl + 2*K + 12
+ if (modadm == F & modcor == T) startlines <- startl + 3*K + 11
+ if (modadm == F & modcor == F) startlines <- startl + 2*K + 11
 
-  if (startlines == 0) print("The model you used to run structure is not compatible with Structure sum")
+ if (startlines == 0) print("The model you used to run structure is not compatible with Structure sum")
 
 	rundata <- as.matrix(read.table(file=infile, nrows=indnumb, skip=startlines)[ ,5:(K+4)])
 	groups <- vector(mode="integer", indnumb)
@@ -438,34 +438,34 @@ indnumb <- scan(infile, skip=(hd+1), n=1)
 if (locprior == T) startl <- startl + 1
  
  if (pop > 0) {
-        modcor <- T
-        if (modadm == T) { 
-          if(scan(infile, skip= (startl + 2*K + 6 + pop), n=1, what="character")== "Allele") modcor <- F }
-        if (modadm == F) { 
-          if(scan(infile, skip= (startl + 2*K + 5 + pop), n=1, what="character")== "Allele") modcor <- F }
-        if(locprior == T) {   
-          if (modadm == T) { 
-            if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
-          if (modadm == F) { 
-           if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 5 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
-          }
+ modcor <- T
+ if (modadm == T) { 
+ if(scan(infile, skip= (startl + 2*K + 6 + pop), n=1, what="character")== "Allele") modcor <- F }
+ if (modadm == F) { 
+ if(scan(infile, skip= (startl + 2*K + 5 + pop), n=1, what="character")== "Allele") modcor <- F }
+ if(locprior == T) { 
+ if (modadm == T) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
+ if (modadm == F) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 5 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
+ }
 
-        startlines <- 0
-        if (locprior == F){
-          if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop
-          if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop
-          if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop
-          if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop
-        }
-        if(locprior == T) {
-          if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop + nbloc + 3
-          if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop + nbloc + 3
-          if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop + nbloc + 3
-          if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop + nbloc + 3
-        }
+ startlines <- 0
+ if (locprior == F){
+ if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop
+ if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop
+ if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop
+ if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop
+ }
+ if(locprior == T) {
+ if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop + nbloc + 3
+ if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop + nbloc + 3
+ if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop + nbloc + 3
+ if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop + nbloc + 3
+ }
 
 
-  if (startlines == 0) print("The model you used to run structure is not compatible with Structure sum")
+ if (startlines == 0) print("The model you used to run structure is not compatible with Structure sum")
 
 	rundata <- as.matrix(read.table(file=infile, nrows=indnumb, skip=startlines)[ ,6:(K+5)])
 	groups <- vector(mode="integer", indnumb)
@@ -503,13 +503,13 @@ if(scan(file=as.character(runtab[1, 2]), skip= (hd+8), n=1, what="character")== 
 startl <- (hd+23+ran)
 modadm <- T
 if(scan(file=as.character(runtab[1, 2]), skip= (hd+6), n=1, what="character")== "NO") {
-  startl <- (hd+24+ran) 
-  modadm <- F
-  }
+ startl <- (hd+24+ran) 
+ modadm <- F
+ }
 if(scan(file=as.character(runtab[1, 2]), skip= (hd+6), n=1, what="character")== "RECESSIVE") {
 if(scan(file=as.character(runtab[1, 2]), skip= (hd+7), n=1, what="character")== "NO") {
-  startl <- (hd+25+ran)
-  modadm <- F } else startl <- (hd+24+ran)}
+ startl <- (hd+25+ran)
+ modadm <- F } else startl <- (hd+24+ran)}
 
 if (pop == 0) {
 		
@@ -517,32 +517,32 @@ if (pop == 0) {
 	K <- scan(runfiles[1], skip=(hd+3), n=1)
 	indnumb <- scan(runfiles[1], skip=(hd+1), n=1)
 	
-    	  modcor <- T
-        if (modadm == T) { 
-          if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 7), n=1, what="character")== "Allele") modcor <- F }
-        if (modadm == F) { 
-          if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6), n=1, what="character")== "Allele") modcor <- F }
+ 	 modcor <- T
+ if (modadm == T) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 7), n=1, what="character")== "Allele") modcor <- F }
+ if (modadm == F) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6), n=1, what="character")== "Allele") modcor <- F }
 
-        startlines <- 0
-        if (modadm == T & modcor == T) startlines <- startl + 3*K + 12
-        if (modadm == T & modcor == F) startlines <- startl + 2*K + 12
-        if (modadm == F & modcor == T) startlines <- startl + 3*K + 11
-        if (modadm == F & modcor == F) startlines <- startl + 2*K + 11
+ startlines <- 0
+ if (modadm == T & modcor == T) startlines <- startl + 3*K + 12
+ if (modadm == T & modcor == F) startlines <- startl + 2*K + 12
+ if (modadm == F & modcor == T) startlines <- startl + 3*K + 11
+ if (modadm == F & modcor == F) startlines <- startl + 2*K + 11
 
-  if (startlines == 0) print("The model you used to run structure is not compatible with Structure sum")
+ if (startlines == 0) print("The model you used to run structure is not compatible with Structure sum")
 
 		rundat <- array(data=NA, c(indnumb, K, runnumbers))
-    
+ 
 		for (h in 1:runnumbers) {
 			rundat[ , , h] <- as.matrix(read.table(file=runfiles[h], nrows=indnumb, skip=startlines)[ ,5:(K+4)])
 			}
-    mode(rundat) <- "numeric"
-    
+ mode(rundat) <- "numeric"
+ 
 		orderdat <- array(data=NA, c(indnumb, K, runnumbers))
 		orderdat [ , , 1:2] <- ordermat(rundat[ , , 1], rundat[ , , 2], indnumb, K)
 		if (runnumbers > 2) {
-		  for (i in 3:runnumbers)
-		  orderdat [ , , i] <- ordermat(rundat[ , , 1], rundat[ , , i], indnumb, K)[ , ,2]
+		 for (i in 3:runnumbers)
+		 orderdat [ , , i] <- ordermat(rundat[ , , 1], rundat[ , , i], indnumb, K)[ , ,2]
 			}
 		}
 		
@@ -554,33 +554,33 @@ if (pop > 0) {
 	K <- scan(runfiles[1], skip=(hd+3), n=1)
 	indnumb <- scan(runfiles[1], skip=(hd+1), n=1)
 
-        modcor <- T
-        if (modadm == T) { 
-          if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6 + pop), n=1, what="character")== "Allele") modcor <- F }
-        if (modadm == F) { 
-          if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 5 + pop), n=1, what="character")== "Allele") modcor <- F }
-        if(locprior == T) {   
-          if (modadm == T) { 
-            if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
-          if (modadm == F) { 
-           if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 5 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
-          }
+ modcor <- T
+ if (modadm == T) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6 + pop), n=1, what="character")== "Allele") modcor <- F }
+ if (modadm == F) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 5 + pop), n=1, what="character")== "Allele") modcor <- F }
+ if(locprior == T) { 
+ if (modadm == T) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
+ if (modadm == F) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 5 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
+ }
 
-        startlines <- 0     
-        if (locprior == F){
-          if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop
-          if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop
-          if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop
-          if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop
-        }
-        if (locprior == T) {
-          if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop + nbloc + 3
-          if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop + nbloc + 3
-          if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop + nbloc + 3
-          if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop + nbloc + 3
-        }
+ startlines <- 0 
+ if (locprior == F){
+ if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop
+ if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop
+ if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop
+ if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop
+ }
+ if (locprior == T) {
+ if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop + nbloc + 3
+ if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop + nbloc + 3
+ if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop + nbloc + 3
+ if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop + nbloc + 3
+ }
 
-  if (startlines == 0) print("The model you used to run structure is not compatible with Structure sum")
+ if (startlines == 0) print("The model you used to run structure is not compatible with Structure sum")
 
 		rundat <- array(data=NA, c(indnumb, K, runnumbers))
 
@@ -592,14 +592,14 @@ if (pop > 0) {
 		orderdat <- array(data=NA, c(indnumb, K, runnumbers))
 		orderdat [ , , 1:2] <- ordermat(rundat[ , , 1], rundat[ , , 2], indnumb, K)
 		if (runnumbers > 2) {
-		  for (i in 3:runnumbers)
-		  orderdat [ , , i] <- ordermat(rundat[ , , 1], rundat[ , , i], indnumb, K)[ , ,2]
+		 for (i in 3:runnumbers)
+		 orderdat [ , , i] <- ordermat(rundat[ , , 1], rundat[ , , i], indnumb, K)[ , ,2]
 			}
 	}
 
 for (i in 1:runnumbers) {
-  nam <- paste(runfiles[i],"-ord.txt", sep="", collapse=NULL)
-  write.table(orderdat[ , , i], file=nam, quote=FALSE, sep="\t", eol="\n", row.names=FALSE, col.names=FALSE)
+ nam <- paste(runfiles[i],"-ord.txt", sep="", collapse=NULL)
+ write.table(orderdat[ , , i], file=nam, quote=FALSE, sep="\t", eol="\n", row.names=FALSE, col.names=FALSE)
 }
 
 averages <- apply(orderdat, c(1,2), mean)
@@ -634,45 +634,45 @@ if(scan(file=as.character(runtab[1, 2]), skip= (hd+8), n=1, what="character")== 
 startl <- (hd+23+ran)
 modadm <- T
 if(scan(file=as.character(runtab[1, 2]), skip= (hd+6), n=1, what="character")== "NO") {
-  startl <- (hd+24+ran) 
-  modadm <- F
-  }
+ startl <- (hd+24+ran) 
+ modadm <- F
+ }
 if(scan(file=as.character(runtab[1, 2]), skip= (hd+6), n=1, what="character")== "RECESSIVE") {
 if(scan(file=as.character(runtab[1, 2]), skip= (hd+7), n=1, what="character")== "NO") {
-  startl <- (hd+25+ran)
-  modadm <- F } else startl <- (hd+24+ran)}
+ startl <- (hd+25+ran)
+ modadm <- F } else startl <- (hd+24+ran)}
 
 if (pop == 0) {
 		
 	runfiles <- as.vector(runtab[ , 2])
 	indnumb <- scan(runfiles[1], skip=(hd+1), n=1)
-  
-  for (i in 1:runnumbers) {            
-  K <- scan(runfiles[i], skip=(hd+3), n=1)
-  
-   if (K != 1) {
-        modcor <- T
-        if (modadm == T) { 
-          if(scan(file=as.character(runfiles[i]), skip= (startl + 2*K + 7), n=1, what="character")== "Allele") modcor <- F }
-        if (modadm == F) { 
-          if(scan(file=as.character(runfiles[i]), skip= (startl + 2*K + 6), n=1, what="character")== "Allele") modcor <- F }
+ 
+ for (i in 1:runnumbers) { 
+ K <- scan(runfiles[i], skip=(hd+3), n=1)
+ 
+ if (K != 1) {
+ modcor <- T
+ if (modadm == T) { 
+ if(scan(file=as.character(runfiles[i]), skip= (startl + 2*K + 7), n=1, what="character")== "Allele") modcor <- F }
+ if (modadm == F) { 
+ if(scan(file=as.character(runfiles[i]), skip= (startl + 2*K + 6), n=1, what="character")== "Allele") modcor <- F }
 
-        startlines <- 0
-        if (modadm == T & modcor == T) startlines <- startl + 3*K + 12
-        if (modadm == T & modcor == F) startlines <- startl + 2*K + 12
-        if (modadm == F & modcor == T) startlines <- startl + 3*K + 11
-        if (modadm == F & modcor == F) startlines <- startl + 2*K + 11
+ startlines <- 0
+ if (modadm == T & modcor == T) startlines <- startl + 3*K + 12
+ if (modadm == T & modcor == F) startlines <- startl + 2*K + 12
+ if (modadm == F & modcor == T) startlines <- startl + 3*K + 11
+ if (modadm == F & modcor == F) startlines <- startl + 2*K + 11
 
-      rundat <- as.matrix(read.table(file=runfiles[i], nrows=indnumb, skip=startlines)[ ,5:(K+4)])
-      mode(rundat) <- "numeric"
-      
-	   	divK <- matrix(1/K, indnumb, K)
-		  clust1 <- (K/(K-1)) * apply((rundat - divK)^2, 1, sum)
-		  clusterness [i, 3] <- sum(clust1) / indnumb
+ rundat <- as.matrix(read.table(file=runfiles[i], nrows=indnumb, skip=startlines)[ ,5:(K+4)])
+ mode(rundat) <- "numeric"
+ 
+	 	divK <- matrix(1/K, indnumb, K)
+		 clust1 <- (K/(K-1)) * apply((rundat - divK)^2, 1, sum)
+		 clusterness [i, 3] <- sum(clust1) / indnumb
 		} 
-    if (K==1) clusterness [i, 3] <- "NA"
-    clusterness [i, 1] <- runfiles[i]
-  }	}
+ if (K==1) clusterness [i, 3] <- "NA"
+ clusterness [i, 1] <- runfiles[i]
+ }	}
 
 if (locprior == T) startl <- startl + 1
 
@@ -681,35 +681,35 @@ if (pop > 0) {
 	runfiles <- as.vector(runtab[ , 2])
 	indnumb <- scan(runfiles[1], skip=(hd+1), n=1)
 
-  for (i in 1:runnumbers) {
-  K <- scan(runfiles[i], skip=(hd+3), n=1)
+ for (i in 1:runnumbers) {
+ K <- scan(runfiles[i], skip=(hd+3), n=1)
 
 	if (K!=1) {
-        modcor <- T
-        if (modadm == T) { 
-          if(scan(file=as.character(runfiles[i]), skip= (startl + 2*K + 6 + pop), n=1, what="character")== "Allele") modcor <- F }
-        if (modadm == F) { 
-          if(scan(file=as.character(runfiles[i]), skip= (startl + 2*K + 5 + pop), n=1, what="character")== "Allele") modcor <- F }
-        if(locprior == T) {   
-          if (modadm == T) { 
-            if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
-          if (modadm == F) { 
-           if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 5 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
-          }
+ modcor <- T
+ if (modadm == T) { 
+ if(scan(file=as.character(runfiles[i]), skip= (startl + 2*K + 6 + pop), n=1, what="character")== "Allele") modcor <- F }
+ if (modadm == F) { 
+ if(scan(file=as.character(runfiles[i]), skip= (startl + 2*K + 5 + pop), n=1, what="character")== "Allele") modcor <- F }
+ if(locprior == T) { 
+ if (modadm == T) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 6 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
+ if (modadm == F) { 
+ if(scan(file=as.character(runfiles[1]), skip= (startl + 2*K + 5 + pop + nbloc + 2), n=1, what="character")== "Allele") modcor <- F }
+ }
 
-        startlines <- 0
-        if (locprior == F) {
-         if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop
-         if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop
-         if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop
-         if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop
-        }
-        if(locprior == T) {
-          if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop + nbloc + 3
-          if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop + nbloc + 3
-          if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop + nbloc + 3
-          if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop + nbloc + 3
-        }
+ startlines <- 0
+ if (locprior == F) {
+ if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop
+ if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop
+ if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop
+ if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop
+ }
+ if(locprior == T) {
+ if (modadm == T & modcor == T) startlines <- startl + 3*K + 11 + pop + nbloc + 3
+ if (modadm == T & modcor == F) startlines <- startl + 2*K + 11 + pop + nbloc + 3
+ if (modadm == F & modcor == T) startlines <- startl + 3*K + 10 + pop + nbloc + 3
+ if (modadm == F & modcor == F) startlines <- startl + 2*K + 10 + pop + nbloc + 3
+ }
 
 		rundat <- as.matrix(read.table(file=runfiles[i], nrows=indnumb, skip=startlines)[ , 6:(K+5)])
 		mode(rundat) <- "numeric"
@@ -718,9 +718,9 @@ if (pop > 0) {
 		clust1 <- (K/(K-1)) * apply((rundat - divK)^2, 1, sum)
 		clusterness [i, 3] <- sum(clust1) / indnumb
 		}
-   if (K==1) clusterness [i, 3] <- "NA" 
-   clusterness [i, 1] <- runfiles[i] 
-   }
+ if (K==1) clusterness [i, 3] <- "NA" 
+ clusterness [i, 1] <- runfiles[i] 
+ }
 	}
  
 plot(clusterness[ ,2], clusterness[ ,3], xlab="K", ylab="Clusteredness", ylim=c(0,1), axes=FALSE, cex=1.8, frame=TRUE)
