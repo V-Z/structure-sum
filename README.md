@@ -1,7 +1,7 @@
 Structure-sum
 ========================================
 
-This is a script to summarize the results from several structure runs. Works for outputs of Structure 2.2 using the admixture, no admixture, correlated and uncorrelated allele frequency models. It works for datasets containing recessive alleles (e.g. AFLP) and for datasets including information about populations of origin (but not for results from the USEPOPINFO option). It does not work for the linkage model.
+This is a script to summarize the results from several STRUCTURE runs. It works for outputs of STRUCTURE 2.3 using the admixture, no admixture, correlated, and uncorrelated allele frequency models. It supports datasets containing recessive alleles (e.g., AFLP) and datasets including information about populations of origin (but not for results from the USEPOPINFO option). It does not work for the linkage model.
 
 # Original author
 
@@ -16,25 +16,25 @@ Vojtěch Zeisek, <https://trapa.cz/>.
 
 # Homepage and reporting issues
 
-See <https://github.com/V-Z/structure-sum> and report any issues or wishes using <https://github.com/V-Z/structure-sum/issues>.
+See <https://github.com/V-Z/structure-sum> and report any issues or wishes at <https://github.com/V-Z/structure-sum/issues>.
 
 # License
 
 GNU General Public License 3.0, see `LICENSE.md` and <https://www.gnu.org/licenses/gpl-3.0.html>.
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 # Running STRUCTURE (and its parallelization)
 
-STRUCTURE itself process single file in time. It has simple Java GUI available to create batch task and run on desktop, or also possibly on MetaCentrum. Other option is [ParallelStructure R package](https://r-forge.r-project.org/projects/parallstructure/) (see my older [example](https://trapa.cz/en/structure-r-linux) and [slides](https://trapa.cz/sites/default/files/r_mol_data_phylogen_2020.pdf) --- chapter *Structure* from slide 204), but it has problems with some input file formats. It runs on single computer, using multiple cores.
+STRUCTURE processes single files sequentially. It provides a simple Java GUI to create batch tasks and run them on a desktop, or potentially on MetaCentrum. Another option is the [ParallelStructure R package](https://r-forge.r-project.org/projects/parallstructure/) (see my older [example](https://trapa.cz/en/structure-r-linux) and [slides](https://trapa.cz/sites/default/files/r_mol_data_phylogen_2020.pdf) --- chapter *Structure* from slide 204). However, this package has issues with certain input file formats and runs on a single computer using multiple cores.
 
-See <https://github.com/V-Z/structure-multi-pbspro> for my scripts to compute multiple runs of STRUCTURE in parallel on grids/clusters like Czech [MetaCentrum](https://wwww.metacentrum.cz/). When these calculations are done, users can proceed with this **R** script to select the best K.
+See <https://github.com/V-Z/structure-multi-pbspro> for my scripts to compute multiple STRUCTURE runs in parallel on grids/clusters like the Czech [MetaCentrum](https://www.metacentrum.cz/). Once calculations are completed, users can proceed with this **R** script to select the best K.
 
 # Note
 
-Script and documentation is right now in state from 2011. It'll be updated to be fully compatible with R 4.3+ and more. You can also look at <https://github.com/MarekSlenker/structureSum> by Marek Šlenker, which is another attempt to do similar job.
+The script and documentation are currently in the state from 2011. Updates are planned to ensure full compatibility with R 4.4+ and other improvements. You can also look at <https://github.com/MarekSlenker/structureSum> by Marek Šlenker, which is another attempt to accomplish a similar task.
 
 # Original documentation for Structure-sum
 
